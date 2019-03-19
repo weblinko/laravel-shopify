@@ -27,6 +27,10 @@ class AuthProxy
         $query = $request->query->all();
         $signature = $query['signature'];
         unset($query['signature']);
+        
+        // Decode path prefix brefore build a local signature
+        if (!empty($query['path_prefix'])) 
+            $query['path_prefix'] = urldecode($query['path_prefix']);
 
         // Build a local signature
         $signatureLocal = ShopifyApp::createHmac(['data' => $query, 'buildQuery' => true]);
