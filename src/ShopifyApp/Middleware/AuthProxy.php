@@ -28,7 +28,7 @@ class AuthProxy
         $signature = $query['signature'];
         unset($query['signature']);
         
-        // Decode path prefix brefore build a local signature
+        // Decode path prefix before build a local signature
         if (!empty($query['path_prefix'])) 
             $query['path_prefix'] = urldecode($query['path_prefix']);
 
